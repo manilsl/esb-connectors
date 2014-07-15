@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    
+	<!--parent>
+        <artifactId>esb-connector-parent</artifactId>
+    <groupId>org.wso2.carbon</groupId>
+    <version>4.3.0-SNAPSHOT</version>
+<relativePath>../../pom.xml</relativePath>
+    </parent-->
+
+<modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.wso2.carbon</groupId>
+    <artifactId>esb-connector-yammer-parent</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0.0</version>
+    <modules>
+        <module>yammer-connector-1.0.0</module>
+    </modules>
+
+
+    <repositories>
+        <repository>
+            <id>wso2-nexus</id>
+            <name>WSO2 internal Repository</name>
+            <url>http://maven.wso2.org/nexus/content/groups/wso2-public/</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>daily</updatePolicy>
+                <checksumPolicy>ignore</checksumPolicy>
+            </releases>
+        </repository>
+    </repositories>
+
+    <distributionManagement>
+        <repository>
+            <id>wso2-maven2-repository</id>
+            <name>WSO2 Maven2 Repository</name>
+            <url>scp://dist.wso2.org/home/httpd/dist.wso2.org/maven2/</url>
+        </repository>
+    </distributionManagement>
+
+    <properties>
+        <test.framework.version>${carbon.platform.version}</test.framework.version>
+        <esb.version>4.8.1</esb.version>
+        <carbon.platform.version>4.2.0</carbon.platform.version>
+        <emma.version>2.1.5320</emma.version>
+    </properties-->
+
+
+
+
+</project>
