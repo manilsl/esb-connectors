@@ -21,7 +21,6 @@
     <component name="yammer" package="org.wso2.carbon.connector" >
         <dependency component="yammer_config" />
         <dependency component="yammer_message" />
-<dependency component="yammer_group" />
         <description>getFollowing</description>
     </component>
 

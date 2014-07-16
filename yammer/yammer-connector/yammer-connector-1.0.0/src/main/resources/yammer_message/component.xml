@@ -23,5 +23,9 @@
             <file>getFollowing.xml</file>
             <description>Returns followings</description>
         </component>
+        <component name="getMessages">
+            <file>getMessages.xml</file>
+            <description>Retrieve Messages</description>
+        </component>
     </subComponents>    
 </component>

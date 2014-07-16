@@ -68,19 +68,55 @@ public class YammerConnectorIntegrationTest extends ConnectorIntegrationTestBase
     }
 
 
+    /*Mandatory Param Test Cases */
+
 
     @Test(priority = 1, groups = {"wso2.esb"}, description = "yammer {getFollowing} integration test with mandatory parameters")
     public void testYammerGetFollowingWithMandatory() throws Exception {
 
-        esbRequestHeadersMap.put("Action", "urn:getUser");
+        esbRequestHeadersMap.put("Action", "urn:getFollowing");
         String apiEndPoint =  connectorProperties.getProperty("Apiurl") + "/v1/messages/following.json";
 
-        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap,"GetFollowing.json");
+        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap,"TokenAndUrl.json");
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
 
         Assert.assertEquals(esbRestResponse.getBody().get("threaded_extended").toString(), apiRestResponse.getBody().get("threaded_extended").toString());
     }
 
+    @Test(priority = 1, groups = {"wso2.esb"}, description = "yammer {getMessages} integration test with mandatory parameters")
+    public void testYammerGetMessagesWithMandatory() throws Exception {
+        esbRequestHeadersMap.put("Action", "urn:getMessages");
+        String apiEndPoint =  connectorProperties.getProperty("Apiurl") + "/v1/messages.json";
+        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap,"TokenAndUrl.json");
+        RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
+        Assert.assertEquals(esbRestResponse.getBody().get("threaded_extended").toString(), apiRestResponse.getBody().get("threaded_extended").toString());
+    }
+
+
+    /*Optional Param Test Cases */
+
+
+    @Test(priority = 1, groups = {"wso2.esb"}, description = "yammer {getMessages} integration test with optional parameters")
+    public void testYammerGetMessagesWithOptional() throws Exception {
+        esbRequestHeadersMap.put("Action", "urn:getMessages");
+        String apiEndPoint =  connectorProperties.getProperty("Apiurl") + "/v1/messages.json";
+        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap,"GetMessagesOptional.json");
+        RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
+        Assert.assertEquals(esbRestResponse.getBody().get("threaded_extended").toString(), apiRestResponse.getBody().get("threaded_extended").toString());
+
+    }
+
+
+    /*Negative Param Test Cases*/
+
+    @Test(priority = 3, groups = {"wso2.esb"}, description = "yammer {getMessages} integration test with negative parameters")
+    public void testYammerGetMessagesWithNegative() throws Exception {
+        esbRequestHeadersMap.put("Action", "urn:getMessages");
+        String apiEndPoint =  connectorProperties.getProperty("Apiurl") + "/v1/messages.json?older_than=418ssdsd830394";
+        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap,"GetMessagesNegative.json");
+        RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
+        Assert.assertEquals(esbRestResponse.getHttpStatusCode() , apiRestResponse.getHttpStatusCode());
+    }
 
 
 }

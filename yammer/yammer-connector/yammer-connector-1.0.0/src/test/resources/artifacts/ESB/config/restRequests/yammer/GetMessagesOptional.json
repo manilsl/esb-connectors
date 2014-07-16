@@ -1,0 +1,6 @@
+{
+    "urlHttps": "%s(Apiurl)",
+    "token": "%s(token)",
+    "threaded": "%s(threaded)",
+    "limit": "%s(limit)"
+}

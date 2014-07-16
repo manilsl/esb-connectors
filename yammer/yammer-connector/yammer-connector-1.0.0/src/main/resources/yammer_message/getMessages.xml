@@ -1,29 +1,61 @@
 <template xmlns="http://ws.apache.org/ns/synapse" name="getMessages">
 
+    <parameter name="older_than" description="{no} optional — Older than the message ID specified as a numeric string"/>
+    <parameter name="newer_than" description="{no} optional — newer than the message ID specified as a numeric string"/>
+    <parameter name="threaded" description="{no} optional — newer than the message ID specified as a numeric string"/>
+    <parameter name="limit" description="{no} optional — newer than the message ID specified as a numeric string"/>
+
 
     <sequence>
 
         <property name="Accept-Encoding" action="remove" scope="transport"/>
-        <payloadFactory media-type="xml">
-            <format>
-                <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
-                    <soapenv:Header/>
-                    <soapenv:Body>
+        <property name="uri.var.older_than" expression="$func:older_than"/>
+        <property name="uri.var.newer_than" expression="$func:newer_than"/>
+        <property name="uri.var.threaded" expression="$func:threaded"/>
+        <property name="uri.var.limit" expression="$func:limit"/>
 
-                    </soapenv:Body>
-                </soapenv:Envelope>
-            </format>
-            <args/>
+        <filter
+                xpath="(not(get-property('uri.var.older_than') = '' or (not(string(get-property('uri.var.older_than'))))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat(get-property('uri.var.apiParameters'),'&amp;older_than=',get-property('uri.var.older_than'))" />
+            </then>
+        </filter>
 
-        </payloadFactory>
+        <filter
+                xpath="(not(get-property('uri.var.newer_than') = '' or (not(string(get-property('uri.var.newer_than'))))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat(get-property('uri.var.apiParameters'),'&amp;newer_than=',get-property('uri.var.newer_than'))" />
+            </then>
+        </filter>
+
+        <filter
+                xpath="(not(get-property('uri.var.threaded') = '' or (not(string(get-property('uri.var.threaded'))))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat(get-property('uri.var.apiParameters'),'&amp;threaded=',get-property('uri.var.threaded'))" />
+            </then>
+        </filter>
+
+        <filter
+                xpath="(not(get-property('uri.var.limit') = '' or (not(string(get-property('uri.var.limit'))))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat(get-property('uri.var.apiParameters'),'&amp;limit=',get-property('uri.var.limit'))" />
+            </then>
+        </filter>
 
         <call>
             <endpoint>
                 <http method="get"
-                      uri-template="https://www.yammer.com/api/v1/messages.json"/>
+                      uri-template="https://www.yammer.com/api/v1/messages.json?{uri.var.apiParameters}"/>
             </endpoint>
 
         </call>
         <property name="messageType" value="application/json" scope="axis2"/>
+
+
+
     </sequence>
 </template>

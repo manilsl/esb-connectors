@@ -10,15 +10,66 @@
 
             <property name="urlHttps" expression="json-eval($.urlHttps)"/>
             <property name="token" expression="json-eval($.token)"/>
+            <property name="older_than" expression="json-eval($.older_than)"/>
+            <property name="threaded" expression="json-eval($.threaded)"/>
+            <property name="limit" expression="json-eval($.limit)"/>
 
             <yammer.init>
                 <urlHttps>{$ctx:urlHttps}</urlHttps>
                 <token>{$ctx:token}</token>
             </yammer.init>
-           <yammer.getFollowing>
-            </yammer.getFollowing>
 
-            <log level="full"></log>
+            <switch source="get-property('transport', 'Action')">
+                <case regex="urn:getFollowing">
+                    <yammer.getFollowing/>
+                </case>
+                <case regex="urn:getMessages">
+                    <yammer.getMessages>
+                        <older_than>{$ctx:older_than}</older_than>
+                        <newer_than>{$ctx:newer_than}</newer_than>
+                        <threaded>{$ctx:threaded}</threaded>
+                        <limit>{$ctx:limit}</limit>
+                    </yammer.getMessages>
+                </case>
+
+            </switch>
+
+            <filter source="$axis2:HTTP_SC" regex="^[^2][0-9][0-9]">
+                <then>
+                    <property name="ERROR_CODE" expression="$axis2:HTTP_SC"/>
+                    <switch source="$axis2:HTTP_SC">
+                        <case regex="400">
+                            <log>
+                                <property name="ERROR_MESSAGE"
+                                          value="ERROR == 400 == Bad Request. Please check your input parameters"/>
+                            </log>
+                        </case>
+                        <case regex="401">
+                            <log>
+                                <property name="ERROR_MESSAGE"
+                                          value="ERROR == 401 == Your Request is unauthorized. Please check your access token or client id"/>
+                            </log>
+                        </case>
+
+                        <case regex="404">
+                            <log>
+                                <property name="ERROR_MESSAGE"
+                                          value="ERROR == 404 == The parameters requested is invalid or url is not found"/>
+                            </log>
+                        </case>
+                        <case regex="500">
+                            <log>
+                                <property name="ERROR_MESSAGE" value="ERROR == 500 == Internal Server Error"/>
+                            </log>
+                        </case>
+
+                    </switch>
+                </then>
+            </filter>
+
+            <log level="full">
+
+            </log>
             <respond/>
 
         </inSequence>
@@ -26,7 +77,7 @@
         <outSequence>
             <send/>
         </outSequence>
-        <faultSequence/>
+
 
     </target>
     <description/>
