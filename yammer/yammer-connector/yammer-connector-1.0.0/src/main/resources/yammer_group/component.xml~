@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="yammer_groups" type="synapse/template">
+    <subComponents>
+        <component name="joinGroup">
+            <file>joinGroup.xml</file>
+            <description>Join the group specified by the numeric string ID.</description>
+        </component>
+
+    </subComponents>
+</component>

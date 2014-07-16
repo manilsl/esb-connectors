@@ -6,13 +6,13 @@
         <artifactId>esb-connector-yammer-parent</artifactId>
         <groupId>org.wso2.carbon</groupId>
         <version>1.0.0</version>
-	<relativePath>../pom.xml</relativePath>
+<relativePath>../pom.xml</relativePath>
     </parent>
-
     <modelVersion>4.0.0</modelVersion>
+
     <groupId>org.wso2.carbon.connector</groupId>
     <artifactId>org.wso2.carbon.connector.yammer</artifactId>
-    <version>1.0.0</version>
+<version>1.0.0</version>
     <dependencies>
         <!--dependency>
             <groupId>org.apache.synapse</groupId>

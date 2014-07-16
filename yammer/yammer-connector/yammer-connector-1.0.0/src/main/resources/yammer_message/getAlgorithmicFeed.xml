@@ -1,0 +1,29 @@
+<template xmlns="http://ws.apache.org/ns/synapse" name="getAlgorithmicFeed">
+
+
+    <sequence>
+
+        <property name="Accept-Encoding" action="remove" scope="transport"/>
+        <payloadFactory media-type="xml">
+            <format>
+                <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+                    <soapenv:Header/>
+                    <soapenv:Body>
+
+                    </soapenv:Body>
+                </soapenv:Envelope>
+            </format>
+            <args/>
+
+        </payloadFactory>
+
+        <call>
+            <endpoint>
+                <http method="get"
+                      uri-template="https://www.yammer.com/api/v1/messages/algo.json"/>
+            </endpoint>
+
+        </call>
+        <property name="messageType" value="application/json" scope="axis2"/>
+    </sequence>
+</template>

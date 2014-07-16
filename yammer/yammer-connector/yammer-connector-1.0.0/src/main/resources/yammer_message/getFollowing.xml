@@ -20,12 +20,13 @@
 
     <sequence>
 
-        <property name="Accept-Encoding" value="deflate" scope="transport"/>
+        <property name="Accept-Encoding" action="remove" scope="transport"/>
         <call>
             <endpoint>
                 <http method="GET" uri-template="{uri.var.yammer.urlHttps}/v1/messages/following.json"/>
             </endpoint>
         </call>
+        <property name="messageType" value="application/json" scope="axis2"/>
 
     </sequence>
 </template>

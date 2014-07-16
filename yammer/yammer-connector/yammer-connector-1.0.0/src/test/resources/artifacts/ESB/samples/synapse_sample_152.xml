@@ -1,37 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-  ~  Copyright (c) 2005-2010, WSO2 Inc. (http://wso2.com) All Rights Reserved.
-  ~
-  ~  WSO2 Inc. licenses this file to you under the Apache License,
-  ~  Version 2.0 (the "License"); you may not use this file except
-  ~  in compliance with the License.
-  ~  You may obtain a copy of the License at
-  ~
-  ~    http://www.apache.org/licenses/LICENSE-2.0
-  ~
-  ~  Unless required by applicable law or agreed to in writing,
-  ~  software distributed under the License is distributed on an
-  ~  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-  ~  KIND, either express or implied.  See the License for the
-  ~  specific language governing permissions and limitations
-  ~  under the License.
-  ~
-  -->
-
-<!-- Switching transports and message format from SOAP to REST/POX -->
-<definitions xmlns="http://ws.apache.org/ns/synapse">
-
-    <proxy name="StockQuoteProxy" transports="https">
-        <target>
-            <endpoint>
-                <address uri="http://localhost:9000/services/SimpleStockQuoteService" format="pox"/>
-            </endpoint>
-            <outSequence>
-                <log level="full"/>
-                <send/>
-            </outSequence>
-        </target>
-        <publishWSDL uri="file:repository/samples/resources/proxy/sample_proxy_1.wsdl"/>
-    </proxy>
-
-</definitions>
+Ž«âNPïùg,(]hú®dpUjÄÄñá£‹ü)±î·½óÐ)ƒ[h{ÆØ­)õ¥Ó{6”„Ü5Üú”(AÅIªHŸ©Z·g€A‘+8´VG7¶Ih£,jmÖCmGVWíl±D’©Q¨ñ£†G’šúî ùXgEEq>…ÅÆ0º­§H§)ÀœNvÔeÏÊjT=„E“n".ÅLp\šÆ‰Z+½xØ­æ»ã±€kIõ:w}‰¼IWý´é½f¼ä)ä™ƒjñ°àxÍ³’ûí6®Øv·ªLCsË|ƒ(ÅÓ]{úöe7óú‹r„ëC²rw4=w¯c¶x6>FU­ê‰ärxä8•CÇ•l\´(rJ+<º~DÊkË(¤å(Xj't«r¬»…¼* ¡€–I¦ÀÔ/õ®¾ãƒ®²®9Ì´RíC™¼ˆ×›ÈÉhw\®·Ë¨Õ¹å¡5ë†$w‡!f_é þú–j]ŽXœ¬í¤ªI¨èì¤“|M‡šº¥C!\›£°–ÄåÎ4FD{ð¥¶‡Tq=sÅš,ë¯Èg8I#4%é€†*¾†À„N‘<^Ê»ôm8˜[~èqÜÉé)5Žœ*Ö
+K
+L§ÚºQ·NoC<ImÎôÄBl¥ó¸ÿá;ÇvÑ ù·4.èMã¼IE&ØZŸÒCý’|iÐéîÂ=êm‰F»N:"¨´}'ë‹PÌò÷`\Ýúøy\«þ`Eî+ûQÝŠ_À½ÒU0²{Ákj˜ýöëÝíñt|>õ]ÎÙ¯–¾LtÛí cOÂ›á2”šžuÏRTv¤Dý«ºÛØ[ñŠ–H†âîÂâå­}yŽ‹$Àmõ„ë½U
+y–ång¨Þð„x×ÒUwoß6èäžE£Ç¦ˆ¾–.NÚfÆÍe¬(óòlk©C/˜©í–_Ø\’]QÙ•¦Ñ+hWEÛWœªÌªœ7ŸÉò9€q€›h]°m2„ù¯NÙaÁH>êâèù{ô¾j&tšñ£G&C¬/°(Þ™xšÚqkÈ²$öçlDË9B%<CEu†q9H<±zOjÅ<»6Å«‹¹?êÛŽÚ°…Á–k÷?[•È?MÿTÿù_ùKôûÉŒËß[ž†i£~a kyï:ta“"Ïâ8D5¼=7üO~+	ÈÞò—ï—×2ŠÚqã‚<ý{sÊIr\-t—=n©'AÞ[Üñ«Ë‰iünÉ¶QQÔ}ß tzÃ6ƒaGƒRJ<wLUÐðj„¨¸ŒV•V•t‚0›ÅÖemy¦öÙ
+ïF‚øy‹ý*$l›õïçÂím[Æ ŠAÈCbRâ½™N’:$yl:x7ÁÛœÞ5nxb8/Ç+®\Œ/a¥©lZÎ	4CBoú¹Âù£ÿª"Ÿ
+>Ðm”Ãeé€½þtYß¾‚úÒ$˜ÈKì›¶þ¼Cê„dU4Õ(Øé—žÇ\ç|[„ZíHg\®öôÂy´¬ßèxuôÛIx±Â[œÔŒÆ¯gpq2êÒÅø|Ò*­£Ý¼v³;‰àßØSk“æ¹žÐïÿr"¿¶pÇU••ó­<æð%[s‡Â~•!·Dä\zKL¨jr¦•È•›+D*‰Mrv°‹»°'<ÿýñÀDcóXÆ¨ ï“!ÕõËÉ]à&séY.kUº'ž‘úó=„„vúÝ¤~¦æ„%NÜËá>Sd¡¤èZé—³6ü…»}JJ'‚W"3ÝvÛ¼9( î‹YùCÑ|¬ûƒ¶ûbaû6

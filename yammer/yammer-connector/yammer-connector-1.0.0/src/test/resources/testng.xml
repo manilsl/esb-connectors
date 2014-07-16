@@ -10,9 +10,9 @@
     </listeners>
 
 
-    <test name="Soundcloud-Connector-Test" preserve-order="true" verbose="2">
+    <test name="Yammer-Connector-Test" preserve-order="true" verbose="2">
         <packages>
-            <package name="org.wso2.carbon.connector.integration.test.soundcloud"/>
+            <package name="org.wso2.carbon.connector.integration.test.yammer"/>
         </packages>
     </test>
 

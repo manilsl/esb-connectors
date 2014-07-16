@@ -7,7 +7,27 @@
        startOnLoad="true">
     <target>
         <inSequence>
+
+            <property name="urlHttps" expression="json-eval($.urlHttps)"/>
+            <property name="token" expression="json-eval($.token)"/>
+
+            <yammer.init>
+                <urlHttps>{$ctx:urlHttps}</urlHttps>
+                <token>{$ctx:token}</token>
+            </yammer.init>
+           <yammer.getFollowing>
+            </yammer.getFollowing>
+
+            <log level="full"></log>
+            <respond/>
+
         </inSequence>
+
+        <outSequence>
+            <send/>
+        </outSequence>
+        <faultSequence/>
+
     </target>
     <description/>
 </proxy>

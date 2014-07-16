@@ -1,76 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-  ~  Copyright (c) 2005-2010, WSO2 Inc. (http://wso2.com) All Rights Reserved.
-  ~
-  ~  WSO2 Inc. licenses this file to you under the Apache License,
-  ~  Version 2.0 (the "License"); you may not use this file except
-  ~  in compliance with the License.
-  ~  You may obtain a copy of the License at
-  ~
-  ~    http://www.apache.org/licenses/LICENSE-2.0
-  ~
-  ~  Unless required by applicable law or agreed to in writing,
-  ~  software distributed under the License is distributed on an
-  ~  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-  ~  KIND, either express or implied.  See the License for the
-  ~  specific language governing permissions and limitations
-  ~  under the License.
-  ~
-  -->
-<definitions xmlns="http://ws.apache.org/ns/synapse">
-
-    <proxy name="LBProxy" transports="https http" startOnLoad="true">
-        <target faultSequence="errorHandler">
-            <inSequence>
-                <send>
-                    <endpoint>
-                        <session type="simpleClientSession"/>
-                        <loadbalance algorithm="org.apache.synapse.endpoints.algorithms.RoundRobin">
-                            <endpoint>
-                                <address uri="http://localhost:9001/services/LBService1">
-                                    <enableAddressing/>
-                                    <suspendOnFailure>
-                              		<initialDuration>20000</initialDuration>
-                              		<progressionFactor>1.0</progressionFactor>
-                          	    </suspendOnFailure>
-                                </address>
-                            </endpoint>
-                            <endpoint>
-                                <address uri="http://localhost:9002/services/LBService1">
-                                    <enableAddressing/>
-                                    <suspendOnFailure>
-                              		<initialDuration>20000</initialDuration>
-                              		<progressionFactor>1.0</progressionFactor>
-                          	    </suspendOnFailure>
-                                </address>
-                            </endpoint>
-                            <endpoint>
-                                <address uri="http://localhost:9003/services/LBService1">
-                                    <enableAddressing/>
-                                    <suspendOnFailure>
-                              		<initialDuration>20000</initialDuration>
-                              		<progressionFactor>1.0</progressionFactor>
-                          	    </suspendOnFailure>
-                                </address>
-                            </endpoint>
-                        </loadbalance>
-                    </endpoint>
-                </send>
-                <drop/>
-            </inSequence>
-            <outSequence>
-                <send/>
-            </outSequence>
-        </target>
-        <publishWSDL uri="file:repository/samples/resources/proxy/sample_proxy_2.wsdl"/>
-    </proxy>
-
-    <sequence name="errorHandler">
-        <makefault>
-            <code value="tns:Receiver" xmlns:tns="http://www.w3.org/2003/05/soap-envelope"/>
-            <reason value="COULDN'T SEND THE MESSAGE TO THE SERVER."/>
-        </makefault>
-        <send/>
-    </sequence>
-
-</definitions>
+TTTTTTN"7*";2Ãïíêñîöò¶ú¿®aÁ1t¥1µ4∂5ø6ı„É2¿}q·‹8Hààh»®WÓB2RJÇZíä¢ö≤™ª#3+C;SKc[ˇ±Ωˇ7ë—Æ‹Ñd§îƒ¥‰‘ı%E5eUÖu•ï≈µÂ’ˆ;â°ëçôï≥≠ªy/Ôº‚äW^Ò≈+Øx‚WºÒä+^t≈Òœzz.n/Ø9∞]ÿLçlN-oºhQ»»»»"»£"π#…\)	iI©âÍ…*
+ÎJÀÏvC#3+C;SKc[„±uz›x3>x∆œ<„ågûÒ∆3»xx&A–eamiuq}yŒÅË¬cbedgfmh…~ÍâÉ‰∆CBEDGFπrì’TU÷ïV◊ñX]Ÿˇ˝ˇkˆ˙˜;ÿ][v˜ÕÖ„ƒ!r¢!£"π#…\)	iI©âˇ…È–É[S˝cÍ&Ô(∂Ûç€ÿGGGGGGGGGGGGGGAGA=IE]Yeamiuq}yŒÅË¬gbÀÓ(˙Ó:≤√6Ìç€Û÷¿}q·‹8Hà—˙É*(´*¨+≠,Æ-Ø.µ4∂5æ6©ˇ˝>Ë˜7Ê≠Å˚‚¬πqê—ëQ˛˛ø!A95miuq}yèâWÌﬁè«Ôx„wºÒé;ﬁx«Ôº„éwéÈRÂTSVU\W^]`_∞s∫ŸòY⁄ôZ€öeÂ›\πûÆ≤√6Ìç€˜÷O/§Lƒ¥‰‘ı%E5eUÖuÆïû^úmMØç‘k’^^ÌÌ’’^^ÌÌ’’^PÌrGíπR‘íT’îU÷ïVôôY⁄öZ€€^ﬁ©ÌŸnê‹8Hààhﬁ®⁄ˆllœœˆˆl&»ß&®'©(™)´*¨+Ø,∞/ÿ9]lL-ç#ﬂ^®»Cy‰!á<ÚêCy»!<‰êáÚBlKÌÃ-mM≤èÒnŒ‹OgŸaõv∆mâÎî∆òñúö†û§¢®¶¨™∞Æ¥≤¿æˆ’´Ä¸?‡‡¯A9ê—ëQÆ‹Ñd§îƒ¥Â‘¶5VFvfñÜËÆ§øì˛H˙‹7çÑ»ÂÜ$s•$¶%ß&®'©(™)´*¨+≠,Æ-Ø.∞/ÿ9YYµªÍ‹„éÓ∏é;¶„?2ßsÓ∏é;∏„;Ó„éÓ∏é;∏„;Ó„éÓ∏é;∏„¿È÷‘˚ÿı&êêêêêêêÈêoﬁ∏h(:í$d$$$$$$$$$$:$2r3≥4¥5µ6∂ÂøtÍ¶Ö€„ƒ!r¢!•$¶%(()©*™+´:ÆòŸöY€Û_u˚ÏÆ.;m”›∏7o—–QííR”ìS‘îT’òVY⁄ôZ©ªﬁÌÌ››ﬁﬁÌÌ›r–{!=x€ª∫Ω)	iI©âÍ…*
+kJkK´ãÏÀvFfVÜv¶ñŒ∂§Îﬂ†8pN\"7;Ãïíêñîöòûú¢†¶§™®∂¨'πßß‹kozá{{∏∏áºApﬂ\87N""7*È∏˜˜pp˜˜pö+K+ãkÃ´ålÕ¨mMØçÍ¡‡óø/¯A¡·¿8q—ëQÆ‹Ñd§îƒ¥Â‘E5¶;â°°ç©•±≠Óµïz„ºu˜ﬂ{0πóî{àhH©à…	
+ÍJ*kK+ãkÀ´Á˛‹ßÀΩΩ‹ßÀSKc[+Øîº§€¶∫qqﬁπ—êQ‹ëdÆîÑ¥§‘ƒı‰VE∆¸◊‚˝Ô†w›∫aoﬁ∏'.ë	Ê IHKJMLONQPSRYTdZóÓÉíÌ≤€6LûKy…%/º‰íó^Ú…K/y‰%óºÚíK^y…%/º‰íó^ÚJvC+#;3kCé˛ Ùn€[7˜ÕÖ„ƒ!rπ#SìS‘îT’òU]lL≠åmM‰è®ü=›Æ˚;Ï”.∏mq›‹8HààhI©âi…©kÍK+ãkÀ´ÏvC#uOÈ?´ÙR¶bZrj¢z≤™¬∫“ ‚⁄ÚÍ˚Öùƒ––∆‘“ÿ÷Ú⁄∆ªûÚ SOy)Å˚Â√ÂAß<Éî!ô ' ÉOyÂ)§<îT÷ñV◊òWŸöY€öÕ?ùÓm;Î∆›{˚t∫ß√tEDGFπríìS‘îT’◊}∫Oß{ˆM;+#ôøﬁƒƒƒ—ëQÆ‹Ñd‰‘ı%’5ˆÂ;°çâïëüô…≠÷˛∑{{ªª∑¥{ﬁÓ˜vvoo˜˜v!h"¢#£\π	……)´ÍÏvC#3+t?”_⁄A∑m≠˚Ê¬Å˛‚úNFPORQTSVUXWZYta112≤3≥4¥}µ¸Æ·'	?H¯‹8Hààh…®J)*
+jJ™äÎ +ÏKçM-∞ŸMMMMA HÊõ‘”ìS‘îT’¡¶5;â°ëçôï°ù©•±≠¯µ¢~Ü_7¸ø·D4dT+w!ô)%1-95A=UQÅ}¬ŒbËdcfehgji˚nÙŒ„==ﬁﬁ„„ !r˚!ûŒ®òÓ»2WJBZRjbºwﬁÉÁ maﬁ{^Ôıı^PÔõv∆myÎ‡æ∏phú®àˆﬁz®˜©(™)´*¨+∫0òŸôY⁄ªZ9•9999999"jbzräÇ∫≤ ¬⁄“Í‚˚Úù–Öÿƒ˛⁄yß‘_¿Aq·‹8Hààh»®WÓB2RJÇzíä¢ö≤™¬∫“ ‚⁄ÚÍ˚Öùƒ–»∆‘“ˇﬁº´¥—êQ“ë”íS‘ìT’îU÷ïWÿóÏ¨,ÌÃ-ˇNø˛àQë7Æ‹Ñd§îı%E5eUÖu•ï6∂VFvfñÜ∂¶˙«È{¬Æß;Ï”.∏mo›‹7ç HÊJI[O]\_^s`∫∞òŸöZ€_^ºTñ∑ﬁÚÀ[oyÂ-∑ºÚñ[ﬁAÀÀ
+Ç*
+jJ™äÎ +kK´ãÏÀv^F{ËæÁÁ{{ææÁÁ{{æ‰˙~#(%©(™)≠*Æ-Ø.∞/∂5Ω6xˇ˝^ﬁÔÔ˝˝ﬁﬁÔÔ˝˝ﬁﬁÔÔ˝B–DCONQPSRYX[Z]\_^s`∫∞òŸôY⁄öZ€˝eA]AAAA”Ê IHKJMLONQPSRUTWV]\ihkjml||°¿||¿∆myÎ‰æ¯BA]Yeamiuq}y©Å±≠¯µïû"~∂u„ﬂº8pN\ƒ?ÒÉCEDGFπrííR”ìS‘ïT÷•ªzÊÊM«<ÛòcyÃ1è<Êò«ÛÃcèyÊ1i:∞)445µ?∂7÷:•˜{ÿ]]v€¶∫qqﬁπ—êQ‹ëdÆîÑ¥§‘ƒı‰5%UEueïÖµ•’≈ˆÂ;/#?w¯≈Ø+~PÒ°o"¢$£•$¶%ß&™'´*¨+≠,112≤5≥6∂æ_z___$¥§‘ƒı‰5%µE’≈ˆÂ6VFvfñÜµØÏ?∫Aoﬁ∏'.ë1	95A=YEa]ieqmyuÅ}¬ŒbËdcfehgjilk%Ê˝)©w:®Ó»2WJBZRjbzräÇöí ¢#”3+C;SKc[Òkã∫üÒÉåÏ∞Mª∑ÒáÇ†zräÇöí ¬⁄“Í‚˚Úù–Ö∆ƒ »ŒÃ“–÷‘⁄ÿ]¯Q	üü		ü„ºupﬂ\8àHÍ©?
+
+¯Ñ0H1±2≤3≥6¥º6†ﬁ^ÛÕkØyÊ5◊ºÛök^yÕ5Øî6Ô.Ø.∞/ÿ9]lL¨åÌÃ/∑ˇu555555555555O7ë	§ Oßö¶ööööööööõöSßc[·k¸Ù√77||√√77||√L74$ıD”á›5ïU÷ñV◊óWÿ,ÏüÌ¯Êàèè¯¯àûé"7*"ƒ7¯Èàèè¯¯àõékK´ãÏÀvC+#;3cC˛kﬁ‚ πqê—ëQÆ‹Ñd§îı¥≈Â’ˆ#;3+C;SKc[˘ı®®È®ÜÑäàéåsÂ$$%•&¶'ßÈ‘®È¨™∞Æ¥≤∏∂º∫¿æ‘ ¸›Mo∏/.É«ﬂÒÇéï;êÃîíòñúö†û§¢®¶¨™∞Æ¥≤»æˇÎﬁ›¥Àn€\87N""2*ï;êÃîíòñ§ö®¶¨™∞Æ¥≤∏∂º∫¿æaÁ3t˜3Úcnõ∑Óâ‰∆CBEDGFπr"ø»G~LY⁄ô]æjï°PU]v€¶∫qoﬁ∏	)I)âiU™™`™™™™™™™™™™É#3+c;‚kGı|≈≈WT|ÓÑ§îƒ¥‰‘ı%E5eUµu’≈ãÔ””ŒÅË¬∞¯W||≈≈WT|øZ˝ÀT	iI)âiJ™™äÎ +kK´ãÏÀvC/#zı™–È‘“ÿ÷˛⁄y∑ÎÔ¨?qÉé∫§¢®¶¨™∏∂º∫¿æaÁ1t≤1≥2°}”[≥:¥ßn€[7˜ÕÖ%!-)51MIUQ]Yeamiuq}yŒÅË¬cbedgfihkjÓl˛ÎÙìV◊ñX]lL¨åÌÃ-mMØçÙ…˘¡…/ÿAò¸

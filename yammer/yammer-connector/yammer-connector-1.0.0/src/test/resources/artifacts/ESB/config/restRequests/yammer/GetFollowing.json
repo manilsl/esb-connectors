@@ -1,0 +1,4 @@
+{
+    "urlHttps": "%s(Apiurl)",
+    "token": "%s(token)"
+}

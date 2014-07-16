@@ -1,6 +1,0 @@
-{"json_payload":
-    {
-    "token":"%s",
-    "Apiurl":"%s"
-    }
-}

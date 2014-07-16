@@ -38,7 +38,7 @@
 	<module>paypal</module>
 	<module>linkedin</module>
 	<module>amazons3</module>
-	<module>sugarcrm</module>
+	<module>yammer-connector/yammer-connector-1.0.0</module>
     </modules>
 
 <dependencies>
