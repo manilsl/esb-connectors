@@ -1,0 +1,15 @@
+<template xmlns="http://ws.apache.org/ns/synapse" name="getUsers">
+
+    <sequence>
+
+        <property name="Accept-Encoding" action="remove" scope="transport"/>
+        <call>
+            <endpoint>
+                <http method="get"
+                      uri-template="https://www.yammer.com/api/v1/users.json"/>
+            </endpoint>
+        </call>
+        <property name="messageType" value="application/json" scope="axis2"/>
+
+    </sequence>
+</template>

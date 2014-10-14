@@ -1,0 +1,28 @@
+<template xmlns="http://ws.apache.org/ns/synapse" name="addRelationship">
+
+
+    <parameter name="type" description="subordinate | superior | colleague"/>
+    <parameter name="email" description="email of the user"/>
+
+
+    <sequence>
+
+        <property name="Accept-Encoding" action="remove" scope="transport"/>
+        <property name="uri.var.type" expression="$func:type"/>
+        <property name="uri.var.email" expression="$func:email"/>
+
+
+
+        <call>
+            <endpoint>
+                <http method="post"
+                      uri-template="https://www.yammer.com/api/v1/relationships.json?{uri.var.type}={uri.var.email}"/>
+            </endpoint>
+
+        </call>
+        <property name="messageType" value="application/json" scope="axis2"/>
+
+
+
+    </sequence>
+</template>

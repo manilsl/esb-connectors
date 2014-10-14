@@ -1,0 +1,44 @@
+<template xmlns="http://ws.apache.org/ns/synapse" name="getSearch">
+
+    <parameter name="search" description="The search query"/>
+    <parameter name="page" description="optional — page number "/>
+    <parameter name="numPerPage" description="optional — results per page, max 20"/>
+
+
+
+    <sequence>
+
+        <property name="Accept-Encoding" action="remove" scope="transport"/>
+        <property name="uri.var.search" expression="$func:search"/>
+        <property name="uri.var.page" expression="$func:page"/>
+        <property name="uri.var.numPerPage" expression="$func:numPerPage"/>
+
+        <filter
+                xpath="(not(get-property('uri.var.page') = '' or (not(string(get-property('uri.var.page'))))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat(get-property('uri.var.apiParameters'),'&amp;page=',get-property('uri.var.page'))" />
+            </then>
+        </filter>
+
+        <filter
+                xpath="(not(get-property('uri.var.numPerPage') = '' or (not(string(get-property('uri.var.numPerPage'))))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat(get-property('uri.var.apiParameters'),'&amp;num_per_page=',get-property('uri.var.numPerPage'))" />
+            </then>
+        </filter>
+
+        <call>
+            <endpoint>
+                <http method="get"
+                      uri-template="https://www.yammer.com/api/v1/search.json?search={uri.var.search}{uri.var.apiParameters}"/>
+            </endpoint>
+
+        </call>
+        <property name="messageType" value="application/json" scope="axis2"/>
+
+
+
+    </sequence>
+</template>

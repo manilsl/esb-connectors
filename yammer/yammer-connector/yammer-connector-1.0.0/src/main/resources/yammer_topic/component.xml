@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="yammer_topic" type="synapse/template">
+    <subComponents>
+        <component name="getTopicById">
+            <file>getTopicById.xml</file>
+            <description>The users that have used the topic specified by the numeric string ID</description>
+        </component>
+        <component name="getMessageById">
+            <file>getMessageById.xml</file>
+            <description>The feed of messages for a hashtag specified by the numeric string ID</description>
+        </component>
+    </subComponents>
+</component>

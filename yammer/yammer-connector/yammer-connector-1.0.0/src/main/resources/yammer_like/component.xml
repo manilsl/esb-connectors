@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="yammer_like" type="synapse/template">
+    <subComponents>
+        <component name="postLike">
+            <file>postLike.xml</file>
+            <description>Marks the specified message as liked by the current user</description>
+        </component>
+        <component name="removeLike">
+            <file>removeLike.xml</file>
+            <description>Removes the like mark from the specified message</description>
+        </component>
+    </subComponents>
+</component>

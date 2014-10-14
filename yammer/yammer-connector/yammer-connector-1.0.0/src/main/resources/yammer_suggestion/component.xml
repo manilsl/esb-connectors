@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="yammer_suggession" type="synapse/template">
+    <subComponents>
+        <component name="getSuggession">
+            <file>getSuggession.xml</file>
+            <description>Show suggested groups to join and users to follow</description>
+        </component>
+        <component name="deleteSuggession">
+            <file>deleteSuggession.xml</file>
+            <description>Decline a suggestion</description>
+        </component>
+    </subComponents>
+</component>

@@ -1,0 +1,33 @@
+<template xmlns="http://ws.apache.org/ns/synapse" name="getSuggession">
+
+
+    <parameter name="limit" description="limit"/>
+
+
+    <sequence>
+
+        <property name="Accept-Encoding" action="remove" scope="transport"/>
+        <property name="uri.var.limit" expression="$func:limit"/>
+
+
+        <filter
+                xpath="(not(get-property('uri.var.limit') = '' or (not(string(get-property('uri.var.limit'))))))">
+            <then>
+                <property name="uri.var.apiParameters"
+                          expression="fn:concat(get-property('uri.var.apiParameters'),'&amp;limit=',get-property('uri.var.limit'))" />
+            </then>
+        </filter>
+
+        <call>
+            <endpoint>
+                <http method="get"
+                      uri-template="https://www.yammer.com/api/v1/suggestions.json?{uri.var.apiParameters}"/>
+            </endpoint>
+
+        </call>
+        <property name="messageType" value="application/json" scope="axis2"/>
+
+
+
+    </sequence>
+</template>

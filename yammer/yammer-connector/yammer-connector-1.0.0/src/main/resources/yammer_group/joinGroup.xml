@@ -15,29 +15,18 @@
 -->
 <template xmlns="http://ws.apache.org/ns/synapse" name="joinGroup">
 
-    <parameter name="groupID"
-               description="The message ID "/>
+    <parameter name="groupId"
+               description="The group ID "/>
     <sequence>
 
-        <property name="uri.var.groupID" expression="$func:groupID"/>
+        <property name="uri.var.groupId" expression="$func:groupId"/>
         <property name="Accept-Encoding" action="remove" scope="transport"/>
-        <payloadFactory media-type="xml">
-            <format>
-                <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
-                    <soapenv:Header/>
-                    <soapenv:Body>
 
-                    </soapenv:Body>
-                </soapenv:Envelope>
-            </format>
-            <args/>
-
-        </payloadFactory>
 
         <call>
             <endpoint>
-                <http method="delete"
-                      uri-template="https://www.yammer.com/api/v1/group_memberships.json?group_id={uri.var.messageIDforRemoveLike}"/>
+                <http method="post"
+                      uri-template="https://www.yammer.com/api/v1/group_memberships.json?group_id={uri.var.groupId}"/>
             </endpoint>
 
         </call>

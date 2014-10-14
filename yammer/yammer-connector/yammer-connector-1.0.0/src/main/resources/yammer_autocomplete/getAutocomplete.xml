@@ -1,0 +1,27 @@
+<template xmlns="http://ws.apache.org/ns/synapse" name="getAutocomplete">
+
+    <parameter name="prefix" description="prefix"/>
+    <parameter name="model" description="user | group | topic | file | page (note) | open_graph_object | department | external_network | domain"/>
+    <parameter name="modelCount" description="Enter 1 or more"/>
+
+
+    <sequence>
+
+        <property name="Accept-Encoding" action="remove" scope="transport"/>
+        <property name="uri.var.prefix" expression="$func:prefix"/>
+        <property name="uri.var.model" expression="$func:model"/>
+        <property name="uri.var.modelCount" expression="$func:modelCount"/>
+
+
+
+        <call>
+            <endpoint>
+                <http method="get"
+                      uri-template="https://www.yammer.com/api/v1/autocomplete/ranked?prefix={uri.var.prefix}&amp;models={uri.var.model}:{uri.var.modelCount}"/>
+            </endpoint>
+
+        </call>
+        <property name="messageType" value="application/json" scope="axis2"/>
+
+    </sequence>
+</template>

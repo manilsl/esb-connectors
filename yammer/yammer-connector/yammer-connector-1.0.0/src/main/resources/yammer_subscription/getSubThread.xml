@@ -1,0 +1,15 @@
+<template xmlns="http://ws.apache.org/ns/synapse" name="getSubThread">
+
+    <parameter name="threadId" description="threadId"/>
+    <sequence>
+        <property name="Accept-Encoding" action="remove" scope="transport"/>
+        <property name="uri.var.threadId" expression="$func:threadId"/>
+        <call>
+            <endpoint>
+                <http method="get"
+                      uri-template="https://www.yammer.com/api/v1/subscriptions/to_thread/{uri.var.threadId}.json"/>
+            </endpoint>
+        </call>
+        <property name="messageType" value="application/json" scope="axis2"/>
+    </sequence>
+</template>

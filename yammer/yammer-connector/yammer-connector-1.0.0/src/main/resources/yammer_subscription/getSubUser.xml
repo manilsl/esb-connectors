@@ -1,0 +1,15 @@
+<template xmlns="http://ws.apache.org/ns/synapse" name="getSubUser">
+
+    <parameter name="userId" description="userId"/>
+    <sequence>
+        <property name="Accept-Encoding" action="remove" scope="transport"/>
+        <property name="uri.var.userId" expression="$func:userId"/>
+        <call>
+            <endpoint>
+                <http method="get"
+                      uri-template="https://www.yammer.com/api/v1/subscriptions/to_user/{uri.var.userId}.json"/>
+            </endpoint>
+        </call>
+        <property name="messageType" value="application/json" scope="axis2"/>
+    </sequence>
+</template>
