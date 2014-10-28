@@ -18,23 +18,32 @@
 
 package org.wso2.carbon.connector.integration.test.yammer;
 
+import org.apache.axis2.context.ConfigurationContext;
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import org.wso2.carbon.automation.api.clients.proxy.admin.ProxyServiceAdminClient;
+import org.wso2.carbon.automation.api.clients.utils.AuthenticateStub;
+import org.wso2.carbon.automation.utils.axis2client.ConfigurationContextProvider;
+
+import org.wso2.carbon.esb.ESBIntegrationTest;
+import org.wso2.carbon.mediation.library.stub.MediationLibraryAdminServiceStub;
+import org.wso2.carbon.mediation.library.stub.upload.MediationLibraryUploaderStub;
 import org.wso2.connector.integration.test.base.ConnectorIntegrationTestBase;
 import org.wso2.connector.integration.test.base.RestResponse;
 
+
+import javax.activation.DataHandler;
+import java.io.IOException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
-
+import java.util.Properties;
 
 public class YammerConnectorIntegrationTest extends ConnectorIntegrationTestBase {
-
-    protected static final String CONNECTOR_NAME = "yammer-connector-1.0.0";
-    private String validAuthorization;
-    private String invalidAuthorization;
-
 
     private Map<String, String> esbRequestHeadersMap = new HashMap<String, String>();
 
@@ -42,22 +51,17 @@ public class YammerConnectorIntegrationTest extends ConnectorIntegrationTestBase
 
     private Map<String, String> parametersMap = new HashMap<String, String>();
 
-    @BeforeTest(alwaysRun = true)
-    protected void init() throws Exception {
-        super.init(CONNECTOR_NAME);
+    @BeforeClass(alwaysRun = true)
+    public void setEnvironment() throws Exception {
 
+        init("yammer-connector-1.0.0");
         esbRequestHeadersMap.put("Accept-Charset", "UTF-8");
         esbRequestHeadersMap.put("Content-Type", "application/json");
 
         apiRequestHeadersMap.put("Authorization","Bearer " + connectorProperties.getProperty("token"));
         apiRequestHeadersMap.put("Accept-Charset", "UTF-8");
         apiRequestHeadersMap.put("Content-Type", "application/json");
-    }
 
-
-    @Override
-    protected void cleanup() {
-        axis2Client.destroy();
     }
 
     private String addCredentials(String jsonString) {
@@ -66,9 +70,6 @@ public class YammerConnectorIntegrationTest extends ConnectorIntegrationTestBase
                 connectorProperties.getProperty("token"),
                 connectorProperties.getProperty("Apiurl"));
     }
-
-
-    /*Mandatory Param Test Cases */
 
 
     @Test(priority = 1, groups = {"wso2.esb"}, description = "yammer {getFollowing} integration test with mandatory parameters")
@@ -83,40 +84,30 @@ public class YammerConnectorIntegrationTest extends ConnectorIntegrationTestBase
         Assert.assertEquals(esbRestResponse.getBody().get("threaded_extended").toString(), apiRestResponse.getBody().get("threaded_extended").toString());
     }
 
-    @Test(priority = 1, groups = {"wso2.esb"}, description = "yammer {getMessages} integration test with mandatory parameters")
-    public void testYammerGetMessagesWithMandatory() throws Exception {
-        esbRequestHeadersMap.put("Action", "urn:getMessages");
-        String apiEndPoint =  connectorProperties.getProperty("Apiurl") + "/v1/messages.json";
-        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap,"TokenAndUrl.json");
+/*    @Test(priority = 1, groups = { "wso2.esb" }, description = "Soundcloud getUser")
+    public void testSoundcloudGetUserPositive() throws Exception {
+
+        //http://api.soundcloud.com/users/99675972.json?client_id=21fded24c32c2d9b0316971643d2f75f
+
+        esbRequestHeadersMap.put("Action", "urn:getUser");
+        String apiEndPoint =  connectorProperties.getProperty("apiUrlHttp") + "/users/" +
+                connectorProperties.getProperty("userId")+
+                ".json?client_id="+connectorProperties.getProperty("clientId");
+
+        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap,"esb_userid_mandatory.json");
         RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
-        Assert.assertEquals(esbRestResponse.getBody().get("threaded_extended").toString(), apiRestResponse.getBody().get("threaded_extended").toString());
-    }
+
+        Assert.assertEquals(esbRestResponse.getBody().get("id"), apiRestResponse.getBody().get("id"));
+
+    }*/
 
 
-    /*Optional Param Test Cases */
 
 
-    @Test(priority = 1, groups = {"wso2.esb"}, description = "yammer {getMessages} integration test with optional parameters")
-    public void testYammerGetMessagesWithOptional() throws Exception {
-        esbRequestHeadersMap.put("Action", "urn:getMessages");
-        String apiEndPoint =  connectorProperties.getProperty("Apiurl") + "/v1/messages.json";
-        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap,"GetMessagesOptional.json");
-        RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
-        Assert.assertEquals(esbRestResponse.getBody().get("threaded_extended").toString(), apiRestResponse.getBody().get("threaded_extended").toString());
-
-    }
 
 
-    /*Negative Param Test Cases*/
 
-    @Test(priority = 3, groups = {"wso2.esb"}, description = "yammer {getMessages} integration test with negative parameters")
-    public void testYammerGetMessagesWithNegative() throws Exception {
-        esbRequestHeadersMap.put("Action", "urn:getMessages");
-        String apiEndPoint =  connectorProperties.getProperty("Apiurl") + "/v1/messages.json?older_than=418ssdsd830394";
-        RestResponse<JSONObject> esbRestResponse = sendJsonRestRequest(proxyUrl, "POST", esbRequestHeadersMap,"GetMessagesNegative.json");
-        RestResponse<JSONObject> apiRestResponse = sendJsonRestRequest(apiEndPoint, "GET", apiRequestHeadersMap);
-        Assert.assertEquals(esbRestResponse.getHttpStatusCode() , apiRestResponse.getHttpStatusCode());
-    }
+
 
 
 }

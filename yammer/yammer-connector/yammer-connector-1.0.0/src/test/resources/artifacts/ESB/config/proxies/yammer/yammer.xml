@@ -9,14 +9,14 @@
         <inSequence>
 
             <property name="urlHttps" expression="json-eval($.urlHttps)"/>
-            <property name="token" expression="json-eval($.token)"/>
+            <property name="token" value="MS9TKf2VuBErnjk4IzsLdg"/>
             <property name="older_than" expression="json-eval($.older_than)"/>
             <property name="threaded" expression="json-eval($.threaded)"/>
             <property name="limit" expression="json-eval($.limit)"/>
 
             <yammer.init>
-                <urlHttps>{$ctx:urlHttps}</urlHttps>
-                <token>{$ctx:token}</token>
+                <urlHttps>https://www.yammer.com/api</urlHttps>
+                <token>MS9TKf2VuBErnjk4IzsLdg</token>
             </yammer.init>
 
             <switch source="get-property('transport', 'Action')">

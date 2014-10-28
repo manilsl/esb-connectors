@@ -1,4 +1,4 @@
-<template xmlns="http://ws.apache.org/ns/synapse" name="addSubscription">
+<template xmlns="http://ws.apache.org/ns/synapse" name="deleteSubscription">
 
     <parameter name="targetType" description="Target Type"/>
     <parameter name="targetId" description="target Id"/>

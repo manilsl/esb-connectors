@@ -17,78 +17,13 @@
 ~  under the License.
 -->
 
-<component name="yammer_messages" type="synapse/template">
+<component name="yammer_message" type="synapse/template">
     <subComponents>
-        <component name="getMessages">
-            <file>getMessages.xml</file>
-            <description>All public messages in the user’s Yammer network</description>
-        </component>
-
-        <component name="getMyFeed">
-            <file>getMyFeed.xml</file>
-            <description>The user’s feed, based on the selection they have made between “Following” and “Top”
-                conversations
-            </description>
-        </component>
-
-        <component name="getAlgorithmicFeed">
-            <file>getAlgorithmicFeed.xml</file>
-            <description>The algorithmic feed for the user that corresponds to (Top) conversations, which is what the
-                vast majority of users will see in the Yammer web interface
-            </description>
-        </component>
 
         <component name="getFollowing">
             <file>getFollowing.xml</file>
-            <description>The (Following) feed which is conversations involving people, groups and topics that the user
-                is following
+            <description>The (Following) feed which is conversations involving people, groups and topics that the user                is following
             </description>
         </component>
-<<<<<<< HEAD
-        <component name="getMessages">
-            <file>getMessages.xml</file>
-            <description>Retrieve Messages</description>
-        </component>
-    </subComponents>    
-=======
-
-        <component name="getSentMessages">
-            <file>getSentMessages.xml</file>
-            <description>All messages sent by the user</description>
-        </component>
-
-        <component name="getPrivateMessages">
-            <file>getPrivateMessages.xml</file>
-            <description>Private messages received by the user.</description>
-        </component>
-
-        <component name="getReceivedMessages">
-            <file>getReceivedMessages.xml</file>
-            <description>All messages received by the user.</description>
-        </component>
-
-        <component name="postNewMessage">
-            <file>postNewMessage.xml</file>
-            <description>Create a new message. This allows your app to immediately display the newly-posted message back
-                to the user.
-            </description>
-        </component>
-
-        <component name="deleteMessage">
-            <file>deleteMessage.xml</file>
-            <description>Remove a message. The message must be owned by the current user.</description>
-        </component>
-
-        <component name="postLike">
-            <file>postLike.xml</file>
-            <description>Marks the specified message as liked by the current user.</description>
-        </component>
-
-        <component name="removeLike">
-            <file>removeLike.xml</file>
-            <description>Removes the like mark from the specified message.</description>
-        </component>
-
     </subComponents>
->>>>>>> 9d2369c1dc612c77d3eda899fdc5d17218176da6
 </component>
